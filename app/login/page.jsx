@@ -342,75 +342,85 @@ const Login = () => {
   
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white p-4">
-    <Card className="w-full max-w-md shadow-lg p-6 rounded-lg bg-white border border-gray-200">
-      <h2 className="text-2xl font-semibold text-center text-black mb-4">Login</h2>
-  
-      {!emailVerified ? (
-        <>
-          <Input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-gray-300"
-          />
-  
-          <Button
-            onClick={handleVerifyEmail}
-            className="w-full bg-black text-white hover:bg-gray-800 flex items-center justify-center"
-          >
-            {loading2 ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Verify Email"}
-          </Button>
-  
-          <div className="text-center mt-3">
-            <Link href="/forgotpassword" className="text-sm font-medium text-black hover:underline">
-              Forgot Password?
-            </Link>
-          </div>
-        </>
-      ) : (
-        <>
-          <Input
-            type="email"
-            value={email}
-            readOnly
-            className="w-full border border-gray-300 bg-gray-100 cursor-not-allowed mb-3"
-          />
-  
-          {/* 🔥 Wheel Auth Component */}
-          <div className="mb-4">
-            <ColorWheelLogin 
-              passwordColor={passwordColor} 
-              onPasswordUpdate={handlePasswordUpdate} 
-            />
-          </div>
-  
-          {/* 🛠️ Forgot Password Link under Wheel Auth */}
-          <div className="text-center mb-3">
-            <Link href="/forgotpassword" className="text-sm font-medium text-black hover:underline">
-              Forgot Password?
-            </Link>
-          </div>
-  
-          <Button
-            onClick={handleLogin}
-            className="w-full bg-black text-white hover:bg-gray-800 flex items-center justify-center"
-          >
-            {loading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Login"}
-          </Button>
-        </>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 p-4">
+    <div className="flex flex-col md:flex-row items-center bg-white bg-opacity-90 shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
+      
+      {/* 🖼️ Left Side - Image Section (Only show when email is not verified) */}
+      {!emailVerified && (
+        <div className="hidden md:flex items-center justify-center w-1/2 shadow p-6">
+          <img src="/filestorage.jpg" alt="Login Illustration" className="w-80" />
+        </div>
       )}
   
-      {/* 📌 Sign Up Link */}
-      <div className="text-center mt-4">
-        <span className="text-sm text-gray-600">Don't have an account? </span>
-        <Link href="/register" className="text-sm font-medium text-black hover:underline">
-          Sign Up
-        </Link>
+      {/* 🔐 Right Side - Login Form */}
+      <div
+        className={`p-6 ${emailVerified ? "w-[50%] mx-auto" : "w-full md:w-1/2"}`}
+      >
+        <h2 className="text-2xl font-semibold text-center text-blue-500 mb-4">Login</h2>
+  
+        {!emailVerified ? (
+          <>
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border border-gray-300 p-2 rounded"
+            />
+  
+            <Button
+              onClick={handleVerifyEmail}
+              className="w-full bg-blue-500 text-white hover:bg-blue-400 cursor-pointer flex items-center justify-center mt-3 p-2 rounded"
+            >
+              {loading2 ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Verify Email"}
+            </Button>
+  
+            <div className="text-center mt-3">
+              <Link href="/forgotpassword" className="text-sm font-medium text-blue-600 hover:underline">
+                Forgot Password?
+              </Link>
+            </div>
+          </>
+        ) : (
+          <>
+            <Input
+              type="email"
+              value={email}
+              readOnly
+              className="w-full border border-gray-300 bg-gray-100 cursor-not-allowed mb-3 p-2 rounded"
+            />
+  
+            {/* 🔥 Wheel Auth Component */}
+            <div className="mb-4">
+              <ColorWheelLogin passwordColor={passwordColor} onPasswordUpdate={handlePasswordUpdate} />
+            </div>
+  
+            <div className="text-center mb-3">
+              <Link href="/forgotpassword" className="text-sm font-medium text-blue-600 hover:underline">
+                Forgot Password?
+              </Link>
+            </div>
+  
+            <Button
+              onClick={handleLogin}
+              className="w-full bg-blue-500 text-white hover:bg-blue-400 cursor-pointer flex items-center justify-center p-2 rounded"
+            >
+              {loading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Login"}
+            </Button>
+          </>
+        )}
+  
+        {/* 📌 Sign Up Link */}
+        <div className="text-center mt-4">
+          <span className="text-sm text-gray-600">Don't have an account? </span>
+          <Link href="/register" className="text-sm font-medium text-blue-600 hover:underline">
+            Sign Up
+          </Link>
+        </div>
       </div>
-    </Card>
+    </div>
   </div>
+  
   
   );
 };

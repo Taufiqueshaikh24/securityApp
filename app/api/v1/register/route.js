@@ -59,7 +59,7 @@ export async function POST(req) {
 
       // 📧 Resend OTP email (commented out for testing)
       // await sendEmail(email, "Resend OTP - Verify Your Email", `Your new OTP is ${otp}. It expires in 2 minutes.`);
-
+      await sendEmail(email, "verification", name , otp);
       return NextResponse.json({ message: "OTP resent. Please verify your email." }, { status: 200 });
     }
 

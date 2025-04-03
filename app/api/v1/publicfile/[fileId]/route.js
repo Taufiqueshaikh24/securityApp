@@ -41,10 +41,10 @@ export async function POST(req , {params}) {
     console.log("✅ File found:", file.filename);
 
     // Increment access count
-    await db.collection("links").updateOne(
-      { _id: link._id },
-      { $inc: { accessCount: 1 } }
-    );
+    // await db.collection("links").updateOne(
+    //   { _id: link._id },
+    //   { $inc: { accessCount: 1 } }
+    // );
      
     console.log("✅ Access count incremented.");
     // Return file metadata (without requiring a password)

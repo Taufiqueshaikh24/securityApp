@@ -168,7 +168,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
-
+import { Loader2 } from "lucide-react";
 
 
 const VerifyOTPPage = () => {
@@ -285,56 +285,67 @@ const VerifyOTPPage = () => {
   if (!email) return <div>Loading...</div>;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 relative">
-    {/* 🔙 Back Button */}
-    <button 
-      onClick={() => router.back()} 
-      className="absolute top-6 left-6 flex cursor-pointer items-center text-gray-700 hover:text-black"
-    >
-      <ArrowLeft className="h-5 w-5 mr-1" />
-      Back
-    </button>
-
-    <Card className="w-96 p-6 shadow-lg rounded-lg bg-white">
-      <h2 className="text-xl font-semibold text-center">Verify OTP</h2>
-      <p className="text-gray-600 text-sm text-center mb-4">
-        Enter the OTP sent to <span className="font-semibold">{email}</span>
-      </p>
-
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <Input
-          type="text"
-          placeholder="Enter OTP"
-          value={otp}
-          onChange={handleOtpChange}
-          maxLength={6}
-          className="text-lg"
-          required
-        />
-
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Verifying..." : "Verify OTP"}
-        </Button>
-      </form>
-
-      <div className="text-center mt-4">
-        {countdown > 0 ? (
-          <p className="text-gray-500 text-sm">
-            Resend OTP in <span className="font-semibold">{formattedTime}</span>
-          </p>
-        ) : (
-          <Button
-            variant="link"
-            className="text-blue-600 underline"
-            onClick={handleResendOTP}
-            disabled={resendLoading}
-          >
-            {resendLoading ? "Resending..." : "Resend OTP"}
-          </Button>
-        )}
+    <div className="flex relative items-center justify-center min-h-screen bg-blue-500 p-4">
+    <div className=" flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
+      
+      {/* 🔙 Back Button (Top-Left, Outside the Header) */}
+      <button 
+        onClick={() => router.back()} 
+        className="absolute top-4 left-4 flex cursor-pointer items-center text-white  "
+      >
+        <ArrowLeft className="h-5 w-5 mr-1" />
+        Back
+      </button>
+  
+      {/* 🖼️ Left Side - Image Section */}
+      <div className="hidden md:flex items-center justify-center w-1/2 p-6">
+        <img src="/mfa.jpeg" alt="OTP Verification" className="w-80" />
       </div>
-    </Card>
+  
+      {/* 🔐 Right Side - OTP Verification Form */}
+      <div className="w-full md:w-1/2 p-6">
+        <h2 className="text-2xl font-semibold text-center text-blue-500">Verify OTP</h2>
+        <p className="text-gray-600 text-sm text-center mb-4">
+          Enter the OTP sent to <span className="font-semibold">{email}</span>
+        </p>
+  
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <Input
+            type="text"
+            placeholder="Enter OTP"
+            value={otp}
+            onChange={handleOtpChange}
+            maxLength={6}
+            className="text-lg border border-gray-300 p-2 rounded"
+            required
+          />
+  
+          <Button type="submit" className="w-full bg-blue-500 text-white hover:bg-blue-400 cursor-pointer p-2 rounded" disabled={loading}>
+            {loading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Verify OTP"}
+          </Button>
+        </form>
+  
+        <div className="text-center mt-4">
+          {countdown > 0 ? (
+            <p className="text-gray-500 text-sm">
+              Resend OTP in <span className="font-semibold">{formattedTime}</span>
+            </p>
+          ) : (
+            <Button
+              variant="link"
+              className="text-blue-600 underline"
+              onClick={handleResendOTP}
+              disabled={resendLoading}
+            >
+              {resendLoading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Resend OTP"}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
   </div>
+  
+    
   );
 };
 

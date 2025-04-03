@@ -71,7 +71,7 @@ export async function middleware(req) {
     const token = cookies.get("token")?.value;
 
     const authRoutes = ["/login", "/register", "/verifyotp", "/forgotpassword", "/resetpassword" , "/loginotp"
-        , '/home'
+        , '/home' , "/signup"
     ];
 
     // Function to check if token is expired

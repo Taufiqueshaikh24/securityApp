@@ -135,15 +135,15 @@ export async function POST(req, { params }) {
     console.log(file);
 
     // Password check
-    if (file.metadata?.password) {
-      const isMatch = await bcrypt.compare(password, file.metadata.password);
-      if (!isMatch) {
+    if (file.metadata?.password !== password) {
+      // const isMatch = await bcrypt.compare(password, file.metadata.password);
+      // if (!isMatch) {
         return NextResponse.json({ message: "Incorrect password" }, { status: 401 });
-      }
+      // }
     }
 
     // Increment access count
-    // link.accessCount += 1;
+    link.accessCount += 1;
     await link.save();
 
     return NextResponse.json({

@@ -378,68 +378,67 @@ const Access = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-full bg-white p-6">
-        <h2 className="text-4xl text-center">Shared File Access</h2>
-        {!fileData ? (
-          <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
-            {/* <h2 className="text-2xl font-semibold text-center text-black mb-6">Access</h2> */}
-
-            <div className="mb-6">
-              <ColorWheelLogin passwordColor={passwordColor.color} onPasswordUpdate={handlePasswordUpdate} />
-            </div>
-
-            <Button onClick={handleAccess} className="w-full bg-black text-white hover:bg-gray-800">
-              {loading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Access"}
-            </Button>
-          </div>
-        ) : (
-        
-            <div className="flex flex-col justify-center items-center w-full px-4 mt-10">
-             
-            <div className="w-full max-w-7xl bg-white shadow-md rounded-lg overflow-hidden">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gray-200 text-gray-700 text-left text-sm">
-                    <th className="p-3">Filename</th>
-                    <th className="p-3">Size</th>
-                    <th className="p-3">Uploaded On</th>
-                    <th className="p-3 text-center">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {fileData ? (
-                    <tr className="border-b hover:bg-gray-100">
-                      <td className="p-3">{fileData.filename || "N/A"}</td>
-                      <td className="p-3">{fileData.length ? (fileData.length / 1024).toFixed(2) + " KB" : "Unknown"}</td>
-                      <td className="p-3">{fileData.uploadDate ? new Date(fileData.uploadDate).toLocaleString() : "N/A"}</td>
-                      <td className="p-3 flex justify-center space-x-2">
-                        {/* View (Preview) */}
-                        <Button variant="ghost" size="icon" onClick={() => handlePreview(fileData.fileId, fileData.filename)}>
-                          <Eye className="w-5 h-5 text-blue-600" />
-                        </Button>
-
-                        {/* Download */}
-                        <a href={`/api/v1/files/download/${fileData.fileId}?download=true`} download>
-                          <Button variant="ghost" size="icon">
-                            <Download className="w-5 h-5 text-green-600" />
-                          </Button>
-                        </a>
-                      </td>
-                    </tr>
-                        
-                  ) : (
-                    <tr>
-                      <td colSpan="4" className="p-5 text-center text-gray-500">
-                        No files available.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+      <div className="flex flex-col items-center bg-gradient-to-r from-blue-400 to-blue-600 justify-center min-h-screen h-full p-6">
+  <h2 className="text-4xl text-center text-white">Shared File Access</h2>
+  
+  {!fileData ? (
+    <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+      <div className="mb-6">
+        <ColorWheelLogin passwordColor={passwordColor.color} onPasswordUpdate={handlePasswordUpdate} />
       </div>
+
+      <Button onClick={handleAccess} className="w-full bg-black text-white bg-blue-500 hover:bg-blue-600 cursor-pointer">
+        {loading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Access"}
+      </Button>
+    </div>
+  ) : (
+    <div className="flex flex-col justify-center items-center w-full px-4 mt-10">
+      <div className="w-full max-w-7xl bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[600px] border-collapse">
+            <thead>
+              <tr className="bg-gray-200 text-gray-700 text-left text-sm">
+                <th className="p-3">Filename</th>
+                <th className="p-3">Size</th>
+                <th className="p-3">Uploaded On</th>
+                <th className="p-3 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fileData ? (
+                <tr className="border-b hover:bg-gray-100">
+                  <td className="p-3">{fileData.filename || "N/A"}</td>
+                  <td className="p-3">{fileData.length ? (fileData.length / 1024).toFixed(2) + " KB" : "Unknown"}</td>
+                  <td className="p-3">{fileData.uploadDate ? new Date(fileData.uploadDate).toLocaleString() : "N/A"}</td>
+                  <td className="p-3 flex justify-center space-x-2">
+                    {/* View (Preview) */}
+                    <Button variant="ghost" size="icon" onClick={() => handlePreview(fileData.fileId, fileData.filename)}>
+                      <Eye className="w-5 h-5 text-blue-600" />
+                    </Button>
+
+                    {/* Download */}
+                    <a href={`/api/v1/files/download/${fileData.fileId}?download=true`} download>
+                      <Button variant="ghost" size="icon">
+                        <Download className="w-5 h-5 text-green-600" />
+                      </Button>
+                    </a>
+                  </td>
+                </tr>
+              ) : (
+                <tr>
+                  <td colSpan="4" className="p-5 text-center text-gray-500">
+                    No files available.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+
 
       {/* File Preview Modal */}
       <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>

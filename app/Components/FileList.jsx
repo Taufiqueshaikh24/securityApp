@@ -400,7 +400,7 @@ export default function FileTable() {
 
 
 
-  const handleOpenShare = async (fileId, filename) => {
+  const handleOpenShare = async (fileId, filename , password , color) => {
     try {
       // Step 1: Check if a shareable link already exists
       const res = await fetch(`/api/v1/get?fileId=${fileId}`, {
@@ -412,7 +412,12 @@ export default function FileTable() {
   
       if (res.ok && data.success) {
         // Step 2: If link exists, copy it to clipboard
-        const shareLink = `${window.location.origin}${data.url}`;
+        // const shareLink = `${window.location.origin}${data.url}`;
+        const shareLink = `
+        url : ${window.location.origin}${data.url}
+        password : ${password}
+        color : ${color}
+        `;
         await navigator.clipboard.writeText(shareLink);
         toast.success("🔗 Link copied to clipboard!");
       } else {
@@ -503,7 +508,7 @@ export default function FileTable() {
                       </a>
 
                       {/* Share */}
-                        <Button variant="ghost" className="cursor-pointer" size="icon" onClick={() => handleOpenShare(file._id , file.filename ,  file.metadata.password , )}>
+                        <Button variant="ghost" className="cursor-pointer" size="icon" onClick={() => handleOpenShare(file._id , file.filename ,  file.metadata.password , file.metadata.color )}>
                           <Share2 className="w-5 h-5 text-gray-600" />
                         </Button>
                         

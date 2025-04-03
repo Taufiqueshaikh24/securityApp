@@ -392,53 +392,84 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-white p-6">
-      <button 
-      onClick={() => router.back()} 
-      className="absolute cursor-pointer top-6 left-6 flex items-center text-gray-700 hover:text-black"
-    >
-      <ArrowLeft className="h-5 w-5 mr-1" />
-      Back
-    </button>
-      <Card className="w-full cursor-pointer max-w-md shadow-lg p-8 rounded-lg bg-white border border-gray-200">
-        <h2 className="text-3xl font-semibold text-center text-black mb-6">Reset Password</h2>
+<div className="relative flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 p-6">
+  {/* 🔙 Back Button */}
+  <button 
+    onClick={() => router.back()} 
+    className="absolute cursor-pointer top-6 left-6 flex items-center text-white hover:text-gray-200"
+  >
+    <ArrowLeft className="h-5 w-5 mr-1" />
+    Back
+  </button>
 
-        <form onSubmit={handleResetPassword} className="space-y-4">
-          <Input type={showPassword ? "text" : "password"} placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
-          <Input type={showPassword ? "text" : "password"} placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-          
-          <div className="flex items-center gap-3">
-            <Select value={passwordColor} onValueChange={setPasswordColor}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Password Color" />
-              </SelectTrigger>
-              <SelectContent>
-                {colorOptions.map((color) => (
-                  <SelectItem key={color} value={color}>{color.charAt(0).toUpperCase() + color.slice(1)}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {passwordColor && (
-              <div className="w-10 aspect-square rounded-full border border-gray-400" style={{ backgroundColor: passwordColor }} />
-            )}
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input type="checkbox" id="showPassword" checked={showPassword} onChange={() => setShowPassword(!showPassword)} className="w-4 h-4 accent-black cursor-pointer" />
-            <label htmlFor="showPassword" className="text-gray-700 text-sm cursor-pointer">Show Password</label>
-          </div>
-
-          <Button type="submit" className="w-full bg-black text-white hover:bg-gray-800" disabled={loading}>
-            {loading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Reset Password"}
-          </Button>
-        </form>
-
-        <div className="text-center mt-4">
-          <span className="text-sm text-gray-600">Remember your password? </span>
-          <Link href="/login" className="text-sm font-medium text-black hover:underline">Login</Link>
-        </div>
-      </Card>
+  <div className="flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full h-[500px]">
+    
+    {/* 🖼️ Left Side - Image Section */}
+    <div className="hidden md:flex items-center justify-center w-1/2 h-full bg-gray-100">
+      <img src="/fileaccess.jpeg" alt="Reset Password" className="w-full h-full object-cover" />
     </div>
+
+    {/* 🔑 Right Side - Reset Password Form */}
+    <Card className="w-full md:w-1/2 h-full flex flex-col justify-center p-8">
+      <h2 className="text-3xl font-semibold text-center text-black mb-6">Reset Password</h2>
+
+      <form onSubmit={handleResetPassword} className="space-y-4">
+        <Input 
+          type={showPassword ? "text" : "password"} 
+          placeholder="New Password" 
+          value={newPassword} 
+          onChange={(e) => setNewPassword(e.target.value)} 
+          required 
+        />
+        <Input 
+          type={showPassword ? "text" : "password"} 
+          placeholder="Confirm Password" 
+          value={confirmPassword} 
+          onChange={(e) => setConfirmPassword(e.target.value)} 
+          required 
+        />
+        
+        <div className="flex items-center gap-3">
+          <Select value={passwordColor} onValueChange={setPasswordColor}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select Password Color" />
+            </SelectTrigger>
+            <SelectContent>
+              {colorOptions.map((color) => (
+                <SelectItem key={color} value={color}>{color.charAt(0).toUpperCase() + color.slice(1)}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {passwordColor && (
+            <div className="w-10 aspect-square rounded-full border border-gray-400" style={{ backgroundColor: passwordColor }} />
+          )}
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <input 
+            type="checkbox" 
+            id="showPassword" 
+            checked={showPassword} 
+            onChange={() => setShowPassword(!showPassword)} 
+            className="w-4 h-4 accent-blue-500 cursor-pointer" 
+          />
+          <label htmlFor="showPassword" className="text-gray-700 text-sm cursor-pointer">Show Password</label>
+        </div>
+
+        <Button type="submit" className="w-full bg-blue-500 text-white hover:bg-blue-600" disabled={loading}>
+          {loading ? <Loader2 className="animate-spin h-5 w-5 text-white" /> : "Reset Password"}
+        </Button>
+      </form>
+
+      <div className="text-center mt-4">
+        <span className="text-sm text-gray-600">Remember your password? </span>
+        <Link href="/login" className="text-sm font-medium text-blue-500 hover:underline">Login</Link>
+      </div>
+    </Card>
+  </div>
+</div>
+
+  
   );
 };
 

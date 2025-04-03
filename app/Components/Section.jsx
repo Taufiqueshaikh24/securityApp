@@ -20,7 +20,7 @@ export const sections = [
       id: 4,
       title: "LARGE FILE UPLOAD SUPPORT",
       content:
-        "Upload large files without worry! Our system supports file uploads up to **X GB**, making it ideal for handling high-resolution images, videos, and other large datasets. With seamless upload functionality, you can store and manage your files efficiently.",
+        "Upload large files without worry! Our system supports large  file uploads, making it ideal for handling high-resolution images, videos, and other large datasets. With seamless upload functionality, you can store and manage your files efficiently.",
       image: "/multiple.svg",
     },
     // {

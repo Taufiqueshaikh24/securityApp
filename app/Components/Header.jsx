@@ -523,12 +523,12 @@ export default function Header() {
           // Login & Signup Buttons
           <div className="flex gap-4">
             <Link href="/login">
-              <button className="px-4 py-2 text-white bg-black rounded-lg  transition">
+              <button className="px-4 py-2 text-white bg-blue-500 rounded-lg  transition">
                 Login
               </button>
             </Link>
             <Link href="/register">
-              <button className="px-4 py-2 text-white bg-black rounded-lg  transition">
+              <button className="px-4 py-2 text-white bg-blue-500 rounded-lg  transition">
                 Sign Up
               </button>
             </Link>

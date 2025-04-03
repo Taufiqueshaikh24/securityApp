@@ -29,7 +29,8 @@ export async function POST(req) {
     await user.save();
 
     // Send reset link via email
-    const resetUrl = `${process.env.PROTOCOL}://${process.env.DOMAIN_NAME}/resetpassword?token=${resetToken}&email=${email}`;
+    // const resetUrl = `${process.env.PROTOCOL}://${process.env.DOMAIN_NAME}/resetpassword?token=${resetToken}&email=${email}`;
+    const resetUrl = `https://security-app-sable.vercel.app//resetpassword?token=${resetToken}&email=${email}`;
     console.log(resetUrl);
 
     await sendEmail(user.email, 'reset', user.name, resetUrl);

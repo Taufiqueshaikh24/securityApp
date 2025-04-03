@@ -419,16 +419,35 @@ export default function ShareModal({ fileId, filename, open, onClose  }) {
       });
 
       if (!linkRes.ok) throw new Error("Failed to generate link!");
+      
+      const fileInfo = await fetch(`/api/v1/readfile/${fileId}` , {
+          method:'GET', 
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+      })
+      
+      
+      const  data  = await fileInfo.json();
+      console.log("fileinfo",data)
+      const  data2 = data.file[0].metadata
+
+      
 
       const { url } = await linkRes.json();
       
-      const fullUrl = `${window.location.origin}${url}`;
+      // const fullUrl = `${window.location.origin}${url}`;
+       const fullUrl = `
+        url : ${window.location.origin}${url}
+        password : ${password}
+        color : ${data2.color}`;
+
       console.log("uurl", fullUrl);
       setGenerated(fullUrl);
 
       // Show success toast with the link and copy it to the clipboard
       toast.success("Shareable link generated!");
-      navigator.clipboard.writeText(`${window.location.origin}${url}`).then(() => {
+      // navigator.clipboard.writeText(`${window.location.origin}${url}`).then(() => {
+      navigator.clipboard.writeText(`${fullUrl}`).then(() => {
         toast.success("Link copied to clipboard!");
       });
 
@@ -442,7 +461,7 @@ export default function ShareModal({ fileId, filename, open, onClose  }) {
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md w-full bg-white p-6 rounded-lg shadow-xl">
-        <DialogTitle className="text-lg font-semibold text-center">Share File</DialogTitle>
+        <DialogTitle className="text-lg font-semibold text-cente text-blue-500">Share File</DialogTitle>
 
         {/* Filename (Read-only) */}
         <div>
@@ -498,7 +517,7 @@ export default function ShareModal({ fileId, filename, open, onClose  }) {
 
         {/* Share Button with Loader */}
         <DialogFooter>
-          <Button onClick={handleShare} className="w-full mt-4 flex items-center justify-center" disabled={loading}>
+          <Button onClick={handleShare} className="w-full mt-4 flex items-center justify-center bg-blue-500 hover:bg-blue-500 curor-pointer" disabled={loading}>
             {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Generate Link"}
           </Button>
         </DialogFooter>

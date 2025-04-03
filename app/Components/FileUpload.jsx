@@ -192,13 +192,13 @@ export default function FileUpload({ userId }) {
       {/* Upload File Button (Opens Modal) */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>Upload File</Button>
+          <Button className={'bg-blue-500 text-white hover:bg-blue-500 cursor-pointer'}>Upload File</Button>
         </DialogTrigger>
 
         {/* Modal Content */}
         <DialogContent className="p-6 space-y-6 w-full max-w-md">
           {/* Modal Title */}
-          <DialogTitle className="text-lg font-semibold text-center">Upload Your File</DialogTitle>
+          <DialogTitle className="text-lg font-semibold text-center text-blue-500 ">Upload Your File</DialogTitle>
 
           {/* File Input */}
           <div>
@@ -208,7 +208,7 @@ export default function FileUpload({ userId }) {
 
           {/* Upload Button with Loader */}
           <DialogFooter>
-            <Button onClick={handleUpload} className="w-full" disabled={isLoading}>
+            <Button onClick={handleUpload} className="w-full bg-blue-500 hover:bg-blue-500 cursor-pointer" disabled={isLoading}>
               {isLoading ? <Loader2 className="animate-spin w-5 h-5 mr-2" /> : "Upload"}
             </Button>
           </DialogFooter>

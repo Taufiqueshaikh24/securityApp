@@ -98,14 +98,14 @@ export async function POST(req, context) {
     }
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
     // Update the file's metadata
     await filesCollection.updateOne(
       { _id: new mongoose.Types.ObjectId(fileId) },
       {
         $set: {
-          "metadata.password": hashedPassword,
+          "metadata.password": password,
           "metadata.color": color,
         },
       }
