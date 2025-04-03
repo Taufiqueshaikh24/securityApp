@@ -406,12 +406,12 @@ const ResetPasswordPage = () => {
     
     {/* 🖼️ Left Side - Image Section */}
     <div className="hidden md:flex items-center justify-center w-1/2 h-full bg-gray-100">
-      <img src="/fileaccess.jpeg" alt="Reset Password" className="w-full h-full object-cover" />
+      <img src="/resetpassword.svg" alt="Reset Password" className="w-full h-full object-cover" />
     </div>
 
     {/* 🔑 Right Side - Reset Password Form */}
     <Card className="w-full md:w-1/2 h-full flex flex-col justify-center p-8">
-      <h2 className="text-3xl font-semibold text-center text-black mb-6">Reset Password</h2>
+      <h2 className="text-3xl font-semibold text-center text-blue-500 mb-6">Reset Password</h2>
 
       <form onSubmit={handleResetPassword} className="space-y-4">
         <Input 

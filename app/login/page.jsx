@@ -208,6 +208,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import ColorWheelLogin from "../Components/Wheel";
 import { Loader2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image"
 
 const Login = () => {
@@ -342,13 +343,21 @@ const Login = () => {
   
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 p-4 relative">
+        <button 
+              onClick={() => router.back()} 
+              className="absolute top-6 left-6 flex items-center text-white hover:text-gray-200 transition"
+            >
+              <ArrowLeft className="w-5 h-5 mr-1" />
+              Back
+            </button>
+      
     <div className="flex flex-col md:flex-row items-center bg-white bg-opacity-90 shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
       
       {/* 🖼️ Left Side - Image Section (Only show when email is not verified) */}
       {!emailVerified && (
         <div className="hidden md:flex items-center justify-center w-1/2 shadow p-6">
-          <img src="/filestorage.jpg" alt="Login Illustration" className="w-80" />
+          <img src="/login.svg" alt="Login Illustration" className="w-80" />
         </div>
       )}
   

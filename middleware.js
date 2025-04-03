@@ -102,7 +102,7 @@ export async function middleware(req) {
 
     // If user has a token, prevent access to auth pages and redirect to home
     if (token && authRoutes.includes(pathname)) {
-        return NextResponse.redirect(new URL("/", req.url));
+        return NextResponse.redirect(new URL("/home", req.url));
     }
 
     // If user does NOT have a token and is trying to access a protected route, redirect to login

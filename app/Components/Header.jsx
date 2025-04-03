@@ -480,12 +480,12 @@ export default function Header() {
         {/* Logo */}
         <Link href="/home">
           <Image
-            src="/Logo2.png"
+            src="/chatLogo.png"
             height={0}
             width={0}
             sizes="100vw"
             alt="logo"
-            className="w-[100px] h-[60px]"
+            className="w-[100px] h-[60px] bg-white"
           />
         </Link>
 

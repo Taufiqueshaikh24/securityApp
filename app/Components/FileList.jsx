@@ -477,72 +477,67 @@ export default function FileTable() {
   return (
     <>
       <div className="flex justify-center items-center w-full px-4">
-        <div className="w-full max-w-7xl bg-white shadow-md rounded-lg overflow-hidden">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="bg-gray-200 text-gray-700 text-left text-sm">
-                <th className="p-3">Filename</th>
-                <th className="p-3">Size</th>
-                <th className="p-3">Uploaded On</th>
-                <th className="p-3 text-center">Actions</th>
+  <div className="w-full max-w-7xl bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[600px] border-collapse">
+        <thead>
+          <tr className="bg-gray-200 text-gray-700 text-left text-sm">
+            <th className="p-3">Filename</th>
+            <th className="p-3">Size</th>
+            <th className="p-3">Uploaded On</th>
+            <th className="p-3 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {files.length > 0 ? (
+            files.map((file) => (
+              <tr key={file._id} className="border-b hover:bg-gray-100">
+                <td className="p-3">{file.filename}</td>
+                <td className="p-3">{(file.length / 1024).toFixed(2)} KB</td>
+                <td className="p-3">{new Date(file.uploadDate).toLocaleString()}</td>
+                <td className="p-3 flex flex-wrap justify-center gap-2">
+                  {/* View (Preview) */}
+                  <Button variant="ghost" size="icon" onClick={() => handlePreview(file._id, file.filename)}>
+                    <ScanSearch className="w-5 h-5 text-blue-600" />
+                  </Button>
+
+                  {/* Download */}
+                  <a href={`/api/v1/files/${file._id}?download=true`} download>
+                    <Button variant="ghost" size="icon">
+                      <Download className="w-5 h-5 text-green-600" />
+                    </Button>
+                  </a>
+
+                  {/* Share */}
+                  <Button variant="ghost" size="icon" onClick={() => handleOpenShare(file._id, file.filename, file.metadata.password, file.metadata.color)}>
+                    <Share2 className="w-5 h-5 text-gray-600" />
+                  </Button>
+
+                  {/* Delete */}
+                  <Button variant="ghost" size="icon" onClick={() => handleDelete(file._id)}>
+                    <Trash2 className="w-5 h-5 text-red-600" />
+                  </Button>
+
+                  {/* Access Count */}
+                  <Button variant="ghost" size="icon" className="flex items-center gap-1">
+                    <FaRegEye className="w-5 h-5 text-yellow-600" />
+                    <span className="text-sm font-medium">{accessCounts[file._id] || 0}</span>
+                  </Button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {files.length > 0 ? (
-                files.map((file) => (
-                  <tr key={file._id} className="border-b hover:bg-gray-100">
-                    <td className="p-3">{file.filename}</td>
-                    <td className="p-3">{(file.length / 1024).toFixed(2)} KB</td>
-                    <td className="p-3">{new Date(file.uploadDate).toLocaleString()}</td>
-                    <td className="p-3 flex justify-center space-x-2 ">
-                      {/* View (Preview) */}
-                      <Button variant="ghost" className="cursor-pointer" size="icon" onClick={() => handlePreview(file._id, file.filename)}>
-                        <ScanSearch className="w-5 h-5 text-blue-600" />
-                      </Button>
-
-                      {/* Download */}
-                      <a href={`/api/v1/files/${file._id}?download=true`} download>
-                        <Button variant="ghost" size="icon" className="cursor-pointer">
-                          <Download className="w-5 h-5 text-green-600" />
-                        </Button>
-                      </a>
-
-                      {/* Share */}
-                        <Button variant="ghost" className="cursor-pointer" size="icon" onClick={() => handleOpenShare(file._id , file.filename ,  file.metadata.password , file.metadata.color )}>
-                          <Share2 className="w-5 h-5 text-gray-600" />
-                        </Button>
-                        
-                
-
-                      {/* Delete */}
-                      <Button variant="ghost" className="cursor-pointer" size="icon" onClick={() => handleDelete(file._id)}>
-                        <Trash2 className="w-5 h-5 text-red-600" />
-                      </Button>
-
-
-
-                      <Button variant="ghost" className="cursor-pointer flex items-center gap-1" size="icon">
-                        <FaRegEye className="w-5 h-5 text-yellow-600" />
-                        <span className="text-sm font-medium">{accessCounts[file._id] || 0}</span>
-                      </Button>
-
-
-
-
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="4" className="p-5 text-center text-gray-500">
-                    No files uploaded yet.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" className="p-5 text-center text-gray-500">
+                No files uploaded yet.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 
       {/* Render Share Modal */}

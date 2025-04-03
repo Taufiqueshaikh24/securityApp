@@ -5,10 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner"; // Ensure Sonner is imported
 import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   const handleForgotPassword = async () => {
     // ✅ Clear previous toasts
@@ -87,12 +91,12 @@ const ForgotPassword = () => {
     
     {/* 🖼️ Left Side - Image Section */}
     <div className="hidden md:flex items-center justify-center w-1/2 h-full">
-      <img src="/fileaccess.jpeg" alt="Forgot Password" className="w-full h-full object-cover" />
+      <img src="/forgotpassword.svg" alt="Forgot Password" className="w-full h-full object-cover" />
     </div>
 
     {/* 📧 Right Side - Forgot Password Form */}
     <Card className="w-full md:w-1/2 h-full flex flex-col justify-center p-8">
-      <h2 className="text-2xl font-semibold text-center text-black mb-6">Forgot Password</h2>
+      <h2 className="text-2xl font-semibold text-center text-blue-500 mb-6">Forgot Password</h2>
 
       <Input
         type="email"
