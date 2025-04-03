@@ -46,7 +46,7 @@ export default function SecuritySection() {
       
       {/* Left Section - Text Content */}
       <div className="md:w-1/2 space-y-6">
-        <h2 className="text-4xl font-extrabold text-gray-900">
+        <h2 className="text-4xl font-extrabold text-blue-500">
           Secure Your Files with MFA
         </h2>
         <p className="text-lg text-gray-700">

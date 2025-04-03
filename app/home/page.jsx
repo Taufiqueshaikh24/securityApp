@@ -24,7 +24,7 @@ export default function HomePage() {
 
         {/* Content Over Image */}
         <div className="relative z-10 text-white max-w-2xl">
-          <h2 className="text-4xl font-bold mb-4">Secure Your Files with Confidence</h2>
+          <h2 className="text-4xl text-blue-500 font-bold mb-4">Secure Your Files with Confidence</h2>
           <p className="text-lg max-w-lg">
             Upload, share, and manage files securely using advanced authentication methods, including our unique color-wheel login system.
           </p>
@@ -42,7 +42,7 @@ export default function HomePage() {
   <div className="absolute bottom-1/4 right-1/3 w-16 h-16 bg-gradient-to-br from-red-300 to-red-500 opacity-30 rounded-full blur-2xl"></div>
 
   {/* Section Title */}
-  <h2 className="text-5xl text-green-600 font-bold text-center mb-12">Our Unique Features</h2>
+  <h2 className="text-5xl text-blue-500 font-bold text-center mb-12">Our Unique Features</h2>
 
   {/* Cards Grid */}
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

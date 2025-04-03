@@ -79,7 +79,7 @@ export default function Section() {
                 : ""
             }`}
           >
-            <h2 className="text-2xl font-bold text-center">{section.title}</h2>
+            <h2 className="text-2xl text-blue-500 font-bold text-center">{section.title}</h2>
             <p className="mb-2 mt-6 px-2 md:px-4 lg:px-8 text-center">
               {section.content}
             </p>

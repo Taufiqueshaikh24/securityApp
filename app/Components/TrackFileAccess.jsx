@@ -21,7 +21,7 @@ export default function FileAccessFeature() {
 
         {/* Right Section - Text Content */}
         <div className="text-center md:text-left">
-          <h2 className="text-4xl font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-4xl font-extrabold text-blue-500 leading-tight">
             Monitor File Access with Ease
           </h2>
           <p className="mt-4 text-lg text-gray-700">
